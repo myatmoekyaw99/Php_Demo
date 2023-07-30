@@ -56,5 +56,11 @@ $owner = 'admin';
 
 $heading = "Dashboard";
 
-require "views/index.view.php";
+ view("index.view.php",[
+	'heading' => 'Dashboard',
+	'title' => $title,
+	'owner' => $owner,
+	'products' => $products,
+	'filteritems' => $filteritems
+ ]);
 
