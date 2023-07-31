@@ -2,38 +2,25 @@
 
 const BASE_PATH = __DIR__.'/../';
 
-require BASE_PATH . 'functions.php';
+require BASE_PATH .'Core/functions.php';
 
 spl_autoload_register(function($class){
-    // dd($class);
-    require base_path("Core/{$class}.php");
+
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
+    require base_path("{$class}.php");
 });
 
-// require base_path('Database.php');
-require base_path('routers.php');
+// require base_path('Core/Router.php');
 
-// class Person{
-//     public $name;
-//     public $age;
-//     public function breathe(){
-//         echo $this->name." is Breathing"; 
-//     }
-// }
-// $person = new Person();
-// $person->name = "Jon Doe";
-// $person->age = 30;  
-// dd("$person");
-//$person->breathe();
+$router = new \Core\Router();
 
-//connect to our MySQL database.
+$routes = require base_path('routes.php');
 
-// $id = $_GET['id'];
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-// $query = "select * from posts where id = :id";
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-// $posts = $db->query($query,['id'=> $id])->fetchAll();
+$router->route($uri, $method);
 
-// dd($posts);
-// foreach($posts as $post){
-//     echo "<li>".$post['title']."</li>";
-// }
+

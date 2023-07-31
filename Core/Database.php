@@ -1,10 +1,16 @@
 <?php
+
+namespace Core;
+
+use PDO;
+
 class Database{
 
     public $connection;
 
     public $statement;
 
+    //connect to our MySQL database.
     public function __construct($config, $username = 'root', $password = 'root1999818')
     {
         $dsn = "mysql:".http_build_query($config,'',';'); //"mysql:host=localhost;port=3306;dbname=demo_pj;"

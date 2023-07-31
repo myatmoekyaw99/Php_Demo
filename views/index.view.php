@@ -20,7 +20,8 @@
         <?php foreach ($filteritems as $item):?>
             <li><?= $item['name']." Release - ".$item['releaseYear'];?> </li>
         <?php endforeach; ?>
-    </ul>
+  </ul>
     </div>
   </main>
+
 <?php require("partials/footer.php")?>
