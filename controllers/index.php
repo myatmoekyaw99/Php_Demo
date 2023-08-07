@@ -1,4 +1,7 @@
 <?php
+
+// $_SESSION['name'] = 'Myat moe';
+
 $title="Book lists"; 
 $products = [
 		['name' => 'Php for beginner',
@@ -35,18 +38,6 @@ $products = [
 			'releaseYear' => 2014,
 		],
 	];
-
-	// function filter($items,$fn){
-	// 	$filterItems = [];
-
-	// 	foreach($items as $item){
-	// 		if($fn($item)){
-	// 			$filterItems[] = $item;
-	// 		} 
-	// 	}
-
-	// 	return $filterItems;
-	// };
 
 	$filteritems = array_filter($movies,function ($book){
 		return $book['releaseYear'] > 1950 && $book['releaseYear'] < 2020 ;
