@@ -1,7 +1,5 @@
 <?php
 
-// $_SESSION['name'] = 'Myat moe';
-
 $title="Book lists"; 
 $products = [
 		['name' => 'Php for beginner',
@@ -45,10 +43,10 @@ $products = [
 	
 $owner = 'admin';
 
-$heading = "Dashboard";
+$heading = "Home";
 
  view("index.view.php",[
-	'heading' => 'Dashboard',
+	'heading' => $heading,
 	'title' => $title,
 	'owner' => $owner,
 	'products' => $products,
