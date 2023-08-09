@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
@@ -34,9 +35,7 @@ $user = $db->query('select * from users where email = :email', [
 
 if($user){
 //if true, redirect login page & return an error message
-    header('location: /');
-    exit();
-
+    redirect('/');
 }else {
 //if false ,create new account in database and then log the use in , and redirect 
     $db->query('INSERT INTO users(password,email) VALUES(:password, :email)', [
@@ -45,7 +44,9 @@ if($user){
     ]);
 
     //mark that the user has logged in
-    login($user);
+    (new Authenticator)->login([
+        'email' => $email,
+    ]);
 
     header('location: /');
     exit();
